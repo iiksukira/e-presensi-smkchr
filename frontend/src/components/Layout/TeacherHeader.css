@@ -1,0 +1,167 @@
+/** @format */
+
+/** @format */
+
+.teacher-header {
+  background: #8c9600;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.teacher-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.teacher-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.teacher-header-toggle-btn {
+  color: white !important;
+  font-size: 20px;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.teacher-header-toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+}
+
+/* ... rest of the CSS same as before ... */
+.teacher-header-logo {
+  height: 36px;
+  width: 36px;
+  object-fit: contain;
+}
+
+.teacher-header-brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.teacher-header-title {
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.teacher-header-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.teacher-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.teacher-header-icon {
+  font-size: 18px;
+  color: white;
+}
+
+.teacher-header-button {
+  color: white !important;
+  border: none !important;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.teacher-header-button:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+}
+
+.teacher-header-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 6px 14px 6px 8px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.teacher-header-user:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.teacher-header-avatar {
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.teacher-header-user-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.teacher-header-username {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.teacher-header-role {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .teacher-header {
+    padding: 0 12px;
+  }
+
+  .teacher-header-title {
+    font-size: 14px;
+  }
+
+  .teacher-header-subtitle {
+    display: none;
+  }
+
+  .teacher-header-brand {
+    display: none;
+  }
+
+  .teacher-header-user-info {
+    display: none;
+  }
+
+  .teacher-header-user {
+    padding: 4px;
+    background: transparent;
+  }
+}
