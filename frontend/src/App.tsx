@@ -16,6 +16,8 @@ import StudentLoginPage from "./pages/student/LoginPage";
 import ParentLoginPage from "./pages/parent/LoginPage";
 import HomePage from "./pages/HomePage";
 import AdminDashboard from "./pages/admin/Dashboard";
+import StudentData from "./pages/admin/StudentData";
+import TeacherData from "./pages/admin/TeacherData";
 import ManageStudents from "./pages/admin/ManageStudents";
 import ManageTeachers from "./pages/admin/ManageTeachers";
 import ManageClasses from "./pages/admin/ManageClasses";
@@ -100,6 +102,8 @@ function App() {
           <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/student-data" element={<StudentData />} />
+            <Route path="/admin/teacher-data" element={<TeacherData />} />
             <Route path="/admin/manage-students" element={<ManageStudents />} />
             <Route path="/admin/manage-teachers" element={<ManageTeachers />} />
             <Route path="/admin/manage-classes" element={<ManageClasses />} />

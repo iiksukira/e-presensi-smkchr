@@ -1,4 +1,4 @@
-
+/** @format */
 
 import React, { useEffect, useState } from "react";
 import {
@@ -93,8 +93,7 @@ const ManageClasses: React.FC = () => {
     try {
       const res = await api.get("/admin/teachers");
       setTeachers(res.data);
-    } catch (err) {
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {
@@ -162,14 +161,12 @@ const ManageClasses: React.FC = () => {
     {
       title: "No",
       key: "no",
-      width: 60,
       render: (_: any, __: any, index: number) => index + 1,
     },
     {
       title: "Nama Kelas",
       dataIndex: "class_name",
       key: "class_name",
-      width: 180,
       render: (name: string) => <Text strong>{name}</Text>,
       sorter: (a: ClassData, b: ClassData) =>
         (a.class_name || "").localeCompare(b.class_name || ""),
@@ -178,14 +175,12 @@ const ManageClasses: React.FC = () => {
       title: "Jurusan",
       dataIndex: "major",
       key: "major",
-      width: 200,
       filters: majors.map((m) => ({ text: m, value: m })),
       onFilter: (value: any, record: ClassData) => record.major === value,
     },
     {
       title: "Wali Kelas",
       key: "homeroom_teacher",
-      width: 250,
       render: (_: any, record: ClassData) => {
         if (record.homeroom_teacher_id && record.homeroom_teacher_name) {
           return (
@@ -204,7 +199,6 @@ const ManageClasses: React.FC = () => {
     {
       title: "Aksi",
       key: "action",
-      width: 120,
       fixed: isSmallScreen ? undefined : ("right" as const),
       render: (_: any, record: ClassData) => (
         <Space>

@@ -1,4 +1,4 @@
-
+/** @format */
 
 import React, { useEffect, useState } from "react";
 import {
@@ -76,8 +76,7 @@ const ManageParents: React.FC = () => {
     if (stored) {
       try {
         setPlaintextPasswords(JSON.parse(stored));
-      } catch (e) {
-      }
+      } catch (e) {}
     }
   };
 
@@ -199,13 +198,11 @@ const ManageParents: React.FC = () => {
       title: "Nama Orang Tua",
       dataIndex: "full_name",
       key: "full_name",
-      width: 200,
     },
     {
       title: "No. WhatsApp",
       dataIndex: "phone",
       key: "phone",
-      width: 150,
       render: (phone: string) => (
         <span style={{ fontFamily: "monospace" }}>
           {phone || <Tag color="warning">Tidak diisi</Tag>}
@@ -216,13 +213,11 @@ const ManageParents: React.FC = () => {
       title: "Nama Anak (Siswa)",
       dataIndex: "student_name",
       key: "student_name",
-      width: 200,
     },
     {
       title: "Username",
       dataIndex: "username",
       key: "username",
-      width: 150,
       render: (username: string) => (
         <Space>
           <span style={{ fontFamily: "monospace", fontWeight: "bold" }}>
@@ -235,7 +230,6 @@ const ManageParents: React.FC = () => {
       title: "Password",
       dataIndex: "password",
       key: "password",
-      width: 150,
       render: (_: any, record: Parent) => {
         const password =
           plaintextPasswords[record.id] ||
@@ -260,7 +254,6 @@ const ManageParents: React.FC = () => {
     {
       title: "Aksi",
       key: "action",
-      width: 100,
       render: (_: any, record: Parent) => (
         <Space size="small">
           <Button

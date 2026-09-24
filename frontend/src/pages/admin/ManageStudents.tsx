@@ -492,36 +492,30 @@ const ManageStudents: React.FC = () => {
         title: "Baris",
         dataIndex: "row",
         key: "row",
-        width: 70,
       },
       {
         title: "NISN",
         key: "nisn",
-        width: 120,
         render: (_: any, record: any) => record.data["NISN"],
       },
       {
         title: "Nama Lengkap",
         key: "full_name",
-        width: 200,
         render: (_: any, record: any) => record.data["Nama Lengkap"],
       },
       {
         title: "Kelas",
         key: "kelas",
-        width: 150,
         render: (_: any, record: any) => record.data["Kelas"],
       },
       {
         title: "Username",
         key: "username",
-        width: 150,
         render: (_: any, record: any) => record.data["Username"],
       },
       {
         title: "Status",
         key: "status",
-        width: 130,
         render: (_: any, record: any) =>
           record.isValid ? (
             <Tag color="success">Valid</Tag>
@@ -580,19 +574,16 @@ const ManageStudents: React.FC = () => {
                 title: "NISN",
                 dataIndex: ["data", "NISN"],
                 key: "nisn",
-                width: 120,
               },
               {
                 title: "Nama Lengkap",
                 dataIndex: ["data", "Nama Lengkap"],
                 key: "full_name",
-                width: 200,
               },
               {
                 title: "Kelas",
                 dataIndex: ["data", "Kelas"],
                 key: "kelas",
-                width: 150,
               },
               {
                 title: "Kesalahan",
@@ -611,19 +602,16 @@ const ManageStudents: React.FC = () => {
       title: "NISN",
       dataIndex: "nisn",
       key: "nisn",
-      width: 120,
     },
     {
       title: "Nama Lengkap",
       dataIndex: "full_name",
       key: "full_name",
-      width: 200,
     },
     {
       title: "Kelas",
       dataIndex: "class_name",
       key: "class_name",
-      width: 150,
       render: (className: string) => (
         <Tag color={token.colorPrimary} style={{ color: "#003ab8" }}>
           {className}
@@ -634,7 +622,6 @@ const ManageStudents: React.FC = () => {
       title: "Status Wajah",
       dataIndex: "face_data",
       key: "face_data",
-      width: 120,
       render: (face: boolean) =>
         face ? (
           <Tag color="success">Terdaftar</Tag>
@@ -646,7 +633,6 @@ const ManageStudents: React.FC = () => {
       title: "Username",
       dataIndex: "username",
       key: "username",
-      width: 150,
       render: (username: string) => (
         <Space>
           <span style={{ fontFamily: "monospace", fontWeight: "bold" }}>
@@ -659,7 +645,6 @@ const ManageStudents: React.FC = () => {
       title: "Password",
       dataIndex: "password",
       key: "password",
-      width: 150,
       render: (_: any, record: Student) => {
         const password =
           plaintextPasswords[record.id] ||
@@ -684,7 +669,6 @@ const ManageStudents: React.FC = () => {
     {
       title: "Aksi",
       key: "action",
-      width: 100,
       render: (_: any, record: Student) => (
         <Space size="small">
           <Button
@@ -724,10 +708,11 @@ const ManageStudents: React.FC = () => {
       >
         <div>
           <Title level={4} style={{ margin: 0, fontWeight: 700 }}>
-            Manajemen Siswa
+            Manajemen Akun Siswa
           </Title>
           <Text type="secondary" style={{ fontSize: 12 }}>
-            Kelola data siswa, termasuk penambahan, pengeditan, dan penghapusan
+            Kelola data akun siswa, termasuk penambahan, pengeditan, dan
+            penghapusan
           </Text>
         </div>
         <Space wrap>

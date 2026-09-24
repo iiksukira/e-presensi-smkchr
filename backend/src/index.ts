@@ -34,11 +34,11 @@ app.use("/api/student", studentRoutes);
 app.use("/api/parent", parentRoutes);
 
 app.get("/api", (req, res) => {
-  res.json("Welcome to API endpoints Server E-Absen SMKCHR");
+  res.json("Welcome to API endpoints Server E-Presensi SMKCHR");
 });
 
 app.get("/", (req, res) => {
-  res.json("Welcome to Root Server E-Absen SMKCHR");
+  res.json("Welcome to Root Server E-Presensi SMKCHR");
 });
 
 app.post(
@@ -123,5 +123,5 @@ const uploadsPath = path.join(process.cwd(), "uploads");
 app.use("/uploads", express.static(uploadsPath));
 
 app.listen(PORT, () => {
-  console.log(`Server Absensi berjalan di port ${PORT}`);
+  console.log(`Server Presensi berjalan di port ${PORT}`);
 });

@@ -131,7 +131,7 @@ const AttendanceHistory: React.FC<AttendanceHistoryProps> = ({
       message.success("Data berhasil dimuat", 1.5);
     } catch (error) {
       message.error(
-        getErrorMessage(error, "Gagal memuat data riwayat absensi"),
+        getErrorMessage(error, "Gagal memuat data riwayat presensi"),
       );
       setHistory([]);
       setStats({ total: 0, present: 0, late: 0, absent: 0, onTime: 0 });

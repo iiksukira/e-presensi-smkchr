@@ -237,7 +237,7 @@ const ParentDashboard: React.FC = () => {
         {}
         <Col xs={24} lg={16}>
           <Card
-            title="Riwayat Absensi Terbaru"
+            title="Riwayat Presensi Terbaru"
             extra={
               <Button
                 type="link"

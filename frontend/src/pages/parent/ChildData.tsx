@@ -1,4 +1,4 @@
-
+/** @format */
 
 import React from "react";
 import { Card, Descriptions, Row, Col, Typography, Timeline, Tag } from "antd";
@@ -64,7 +64,7 @@ const ChildData: React.FC = () => {
                 },
                 {
                   color: "blue",
-                  children: "Absensi bulan ini berada pada tingkat baik",
+                  children: "Presensi bulan ini berada pada tingkat baik",
                 },
                 {
                   color: "orange",

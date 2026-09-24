@@ -1,6 +1,6 @@
 /** @format */
 
-const BASE_TITLE = "E-Absen SMKCHR";
+const BASE_TITLE = "E-Presensi SMKCHR";
 export const setPageTitle = (pageName: string) => {
   document.title = `${BASE_TITLE} | ${pageName}`;
 };

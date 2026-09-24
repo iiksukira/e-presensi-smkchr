@@ -59,7 +59,10 @@ const attachChildUserId = async (req: ParentUserRequest) => {
   return linkedStudent;
 };
 
-export const getDashboardStats = async (req: ParentUserRequest, res: Response) => {
+export const getDashboardStats = async (
+  req: ParentUserRequest,
+  res: Response,
+) => {
   try {
     const linkedStudent = await attachChildUserId(req);
 
@@ -104,7 +107,7 @@ export const submitStudentAttendance = async (
   } catch (error: any) {
     console.error("Error in parent submitStudentAttendance:", error);
     res.status(500).json({
-      message: error?.message || "Gagal memproses absensi anak",
+      message: error?.message || "Gagal memproses Presensi anak",
     });
   }
 };
@@ -119,12 +122,15 @@ export const getStudentAttendanceHistory = async (
   } catch (error: any) {
     console.error("Error in parent getStudentAttendanceHistory:", error);
     res.status(500).json({
-      message: error?.message || "Gagal mengambil riwayat absensi anak",
+      message: error?.message || "Gagal mengambil riwayat Presensi anak",
     });
   }
 };
 
-export const getStudentSchedule = async (req: ParentUserRequest, res: Response) => {
+export const getStudentSchedule = async (
+  req: ParentUserRequest,
+  res: Response,
+) => {
   try {
     await attachChildUserId(req);
     await studentController.getStudentSchedule(req as any, res);
@@ -136,7 +142,10 @@ export const getStudentSchedule = async (req: ParentUserRequest, res: Response) 
   }
 };
 
-export const getStudentProfile = async (req: ParentUserRequest, res: Response) => {
+export const getStudentProfile = async (
+  req: ParentUserRequest,
+  res: Response,
+) => {
   const parentUserId = req.user?.id;
 
   if (!parentUserId) {
@@ -147,7 +156,9 @@ export const getStudentProfile = async (req: ParentUserRequest, res: Response) =
     const linkedStudent = await getLinkedStudent(parentUserId);
 
     if (!linkedStudent) {
-      return res.status(404).json({ message: "Data orang tua tidak ditemukan" });
+      return res
+        .status(404)
+        .json({ message: "Data orang tua tidak ditemukan" });
     }
 
     res.json({

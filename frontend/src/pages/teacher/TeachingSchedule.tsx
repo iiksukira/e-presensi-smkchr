@@ -1,4 +1,4 @@
-
+/** @format */
 
 import React, { useEffect, useState, useCallback } from "react";
 import {
@@ -77,7 +77,6 @@ const TeachingSchedule: React.FC = () => {
   const isSmallScreen = !screens.md;
   const days = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"];
 
-  
   const fetchSchedule = useCallback(async () => {
     setLoading(true);
     try {
@@ -99,7 +98,6 @@ const TeachingSchedule: React.FC = () => {
     fetchSchedule();
   }, [fetchSchedule]);
 
-  
   useEffect(() => {
     if (selectedDay === "all") {
       setFilteredSchedule(schedule);
@@ -108,7 +106,6 @@ const TeachingSchedule: React.FC = () => {
     }
   }, [selectedDay, schedule]);
 
-  
   const convertFileToBase64 = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -118,28 +115,24 @@ const TeachingSchedule: React.FC = () => {
     });
   };
 
-  
   const handleUploadClick = (record: Schedule) => {
     setSelectedSchedule(record);
     setUploadFile(null);
     setUploadModalVisible(true);
   };
 
-  
   const handleUploadFile = async (file: File) => {
     if (!selectedSchedule) {
       message.error("Data jadwal tidak ditemukan");
       return false;
     }
 
-    
     const isImage = file.type.startsWith("image/");
     if (!isImage) {
       message.error("Hanya file gambar yang diperbolehkan!");
       return false;
     }
 
-    
     const isLt5MB = file.size / 1024 / 1024 < 5;
     if (!isLt5MB) {
       message.error("Ukuran gambar maksimal 5MB!");
@@ -163,10 +156,9 @@ const TeachingSchedule: React.FC = () => {
       setUploadLoading(false);
     }
 
-    return false; 
+    return false;
   };
 
-  
   const handleDeleteAttachment = async (scheduleId: number) => {
     Modal.confirm({
       title: "Hapus Lampiran",
@@ -186,18 +178,15 @@ const TeachingSchedule: React.FC = () => {
     });
   };
 
-  
   const handlePreviewAttachment = (attachment: string) => {
     setPreviewImage(attachment);
     setPreviewVisible(true);
   };
 
-  
   const columns = [
     {
       title: "No",
       key: "no",
-      width: 50,
       render: (_: unknown, __: unknown, index: number) => index + 1,
     },
     {

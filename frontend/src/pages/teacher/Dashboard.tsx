@@ -165,7 +165,7 @@ const TeacherDashboard: React.FC = () => {
   ) => {
     if (checkedIn && checkedOut) return "Selesai";
     if (checkedIn) return "Masuk";
-    return "Belum Absen";
+    return "Belum Presensi";
   };
 
   if (loading) {
@@ -345,7 +345,7 @@ const TeacherDashboard: React.FC = () => {
         {}
         <Col xs={24} lg={12}>
           <Card
-            title={<Text>Status Absensi Hari Ini</Text>}
+            title={<Text>Status Presensi Hari Ini</Text>}
             extra={
               attendanceToday && (
                 <Tag
@@ -410,8 +410,8 @@ const TeacherDashboard: React.FC = () => {
                 </Flex>
 
                 <Alert
-                  title="Absensi hari ini sudah tercatat"
-                  description="Terima kasih telah melakukan absensi. Tetap semangat mengajar!"
+                  title="Presensi hari ini sudah tercatat"
+                  description="Terima kasih telah melakukan presensi. Tetap semangat mengajar!"
                   type="success"
                   showIcon
                 />
@@ -420,7 +420,7 @@ const TeacherDashboard: React.FC = () => {
               <Space orientation="vertical" style={{ width: "100%" }}>
                 <Empty
                   image={Empty.PRESENTED_IMAGE_SIMPLE}
-                  description="Anda belum melakukan absensi hari ini"
+                  description="Anda belum melakukan presensi hari ini"
                 />
 
                 <Button
@@ -429,7 +429,7 @@ const TeacherDashboard: React.FC = () => {
                   block
                   onClick={() => navigate("/teacher/self-attendance")}
                 >
-                  Lakukan Absensi Sekarang
+                  Lakukan Presensi Sekarang
                 </Button>
               </Space>
             )}

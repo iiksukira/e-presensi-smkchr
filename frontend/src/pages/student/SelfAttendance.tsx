@@ -39,7 +39,7 @@ const { Title, Text } = Typography;
 const SelfAttendance: React.FC = () => {
   usePageTitle("Presensi Mandiri");
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<"in" | "out" | null>(null);
   const [modelsLoaded, setModelsLoaded] = useState(false);
   const [cameraActive, setCameraActive] = useState(false);
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(
@@ -86,7 +86,7 @@ const SelfAttendance: React.FC = () => {
     navigator.geolocation.getCurrentPosition(
       (pos) =>
         setLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
-      () => message.error("Mohon aktifkan GPS untuk melakukan absensi"),
+      () => message.error("Mohon aktifkan GPS untuk melakukan Presensi"),
     );
   }, []);
 
@@ -124,7 +124,7 @@ const SelfAttendance: React.FC = () => {
 
     if (meters > locationTolerance) {
       setLocationError(
-        `Lokasi terlalu jauh dari area absensi (${Math.round(
+        `Lokasi terlalu jauh dari area Presensi (${Math.round(
           meters,
         )} m). Batas toleransi ${locationTolerance} m.`,
       );
@@ -209,21 +209,23 @@ const SelfAttendance: React.FC = () => {
     }
 
     if (distanceMeters && distanceMeters > locationTolerance) {
-      message.error("Lokasi Anda berada diluar jangkauan toleransi absensi.");
+      message.error("Lokasi Anda berada diluar jangkauan toleransi presensi.");
       return;
     }
 
     if (type === "out" && !attendanceStatus?.checkedIn) {
-      message.warning("Harap absen masuk terlebih dahulu sebelum absen pulang");
+      message.warning(
+        "Harap Presensi masuk terlebih dahulu sebelum presensi pulang",
+      );
       return;
     }
 
-    setLoading(true);
+    setLoading(type);
 
     try {
       if (!videoRef.current || !modelsLoaded) {
         message.error("Kamera atau model wajah belum siap");
-        setLoading(false);
+        setLoading(null);
         return;
       }
 
@@ -237,7 +239,7 @@ const SelfAttendance: React.FC = () => {
 
       if (!detections) {
         message.error("Wajah tidak terdeteksi. Pastikan pencahayaan cukup.");
-        setLoading(false);
+        setLoading(null);
         return;
       }
 
@@ -257,15 +259,15 @@ const SelfAttendance: React.FC = () => {
           checkOutTime: s.checkOutTime,
         });
       } else {
-        await checkAttendanceStatus();
+        void checkAttendanceStatus();
       }
 
       message.success(
         response.data.message ||
-          `Absensi ${type === "in" ? "Masuk" : "Pulang"} Berhasil!`,
+          `Presensi ${type === "in" ? "Masuk" : "Pulang"} Berhasil!`,
       );
     } catch (err: any) {
-      let errorMessage = "Gagal melakukan absensi";
+      let errorMessage = "Gagal melakukan presensi. Silakan coba lagi.";
 
       if (err.response?.data?.message) {
         errorMessage = err.response.data.message;
@@ -297,7 +299,7 @@ const SelfAttendance: React.FC = () => {
 
       message.error(errorMessage);
     } finally {
-      setLoading(false);
+      setLoading(null);
     }
   };
 
@@ -315,13 +317,13 @@ const SelfAttendance: React.FC = () => {
           style={{ width: "100%", textAlign: "center" }}
         >
           <Tag color={attendanceStatus.checkedIn ? "green" : "orange"}>
-            Absen Masuk:{" "}
+            Presensi Masuk:{" "}
             {attendanceStatus.checkedIn
               ? `✓ ${attendanceStatus.checkInTime || "Sudah"}`
               : "Belum"}
           </Tag>
           <Tag color={attendanceStatus.checkedOut ? "green" : "orange"}>
-            Absen Pulang:{" "}
+            Presensi Pulang:{" "}
             {attendanceStatus.checkedOut
               ? `✓ ${attendanceStatus.checkOutTime || "Sudah"}`
               : "Belum"}
@@ -390,24 +392,24 @@ const SelfAttendance: React.FC = () => {
               type="primary"
               icon={<LoginOutlined />}
               onClick={() => handleAttendance("in")}
-              loading={loading}
+              loading={loading === "in"}
               disabled={
                 !location || !!locationError || attendanceStatus?.checkedIn
               }
               block
             >
-              Absen Masuk
+              Presensi Masuk
             </Button>
 
             <Button
               type="primary"
               icon={<LogoutOutlined />}
               onClick={() => handleAttendance("out")}
-              loading={loading}
+              loading={loading === "out"}
               disabled={!attendanceStatus?.checkedIn}
               block
             >
-              Absen Pulang
+              Presensi Pulang
             </Button>
           </Space>
 
@@ -419,7 +421,7 @@ const SelfAttendance: React.FC = () => {
               </Text>
               <br />
               <Text type="secondary">
-                Jarak ke lokasi absensi:{" "}
+                Jarak ke lokasi Presensi:{" "}
                 {distanceMeters !== null
                   ? `${Math.round(distanceMeters)} m`
                   : "-"}
@@ -434,18 +436,18 @@ const SelfAttendance: React.FC = () => {
       ) : (
         <div style={{ padding: "40px 0", textAlign: "center" }}>
           <CheckCircleOutlined style={{ fontSize: 64, color: "#52c41a" }} />
-          <Title level={3}>Absensi Berhasil!</Title>
-          <Text>Absensi hari ini telah selesai</Text>
+          <Title level={3}>Presensi Berhasil!</Title>
+          <Text>Presensi hari ini telah selesai</Text>
           <br />
           <Space direction="vertical" style={{ marginTop: 16 }}>
             {attendanceStatus?.checkInTime && (
               <Tag color="blue">
-                Absen Masuk: {attendanceStatus.checkInTime}
+                Presensi Masuk: {attendanceStatus.checkInTime}
               </Tag>
             )}
             {attendanceStatus?.checkOutTime && (
               <Tag color="green">
-                Absen Pulang: {attendanceStatus.checkOutTime}
+                Presensi Pulang: {attendanceStatus.checkOutTime}
               </Tag>
             )}
           </Space>

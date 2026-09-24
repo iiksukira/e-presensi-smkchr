@@ -1,9 +1,7 @@
 /** @format */
 
-/** @format */
-
-.teacher-header {
-  background: #8c9600;
+.app-header {
+  background: #2368a2;
   padding: 0 24px;
   display: flex;
   align-items: center;
@@ -14,23 +12,26 @@
   z-index: 100;
 }
 
-.teacher-header-container {
+.app-header-container,
+.app-header-left,
+.app-header-right {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+}
+
+.app-header-container {
+  justify-content: space-between;
   width: 100%;
 }
 
-.teacher-header-left {
-  display: flex;
-  align-items: center;
+.app-header-left {
   gap: 12px;
   flex: 1;
 }
 
-.teacher-header-toggle-btn {
+.app-header-toggle-btn,
+.app-header-button {
   color: white !important;
-  font-size: 20px;
   height: 40px;
   width: 40px;
   display: flex;
@@ -38,70 +39,67 @@
   justify-content: center;
   border-radius: 8px;
   transition: all 0.3s ease;
+}
+
+.app-header-toggle-btn {
+  font-size: 20px;
   z-index: 1001;
 }
 
-.teacher-header-toggle-btn:hover {
+.app-header-toggle-btn:hover,
+.app-header-button:hover {
   background-color: rgba(255, 255, 255, 0.2) !important;
   color: white !important;
 }
 
-/* ... rest of the CSS same as before ... */
-.teacher-header-logo {
+.app-header-logo {
   height: 36px;
   width: 36px;
   object-fit: contain;
 }
 
-.teacher-header-brand {
+.app-header-brand,
+.app-header-user-info {
   display: flex;
   flex-direction: column;
   line-height: 1.2;
+}
+
+.app-header-brand {
   text-align: left;
 }
 
-.teacher-header-title {
+.app-header-title,
+.app-header-username {
   color: white;
+}
+
+.app-header-title {
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.5px;
 }
 
-.teacher-header-subtitle {
+.app-header-subtitle {
   color: rgba(255, 255, 255, 0.8);
   font-size: 11px;
   font-weight: 400;
 }
 
-.teacher-header-right {
-  display: flex;
-  align-items: center;
+.app-header-right {
   gap: 8px;
 }
 
-.teacher-header-icon {
+.app-header-icon {
   font-size: 18px;
   color: white;
 }
 
-.teacher-header-button {
-  color: white !important;
+.app-header-button {
   border: none !important;
-  height: 40px;
-  width: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  transition: all 0.3s ease;
 }
 
-.teacher-header-button:hover {
-  background-color: rgba(255, 255, 255, 0.2) !important;
-  color: white !important;
-}
-
-.teacher-header-user {
+.app-header-user {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -112,27 +110,20 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
-.teacher-header-user:hover {
+.app-header-user:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
-.teacher-header-avatar {
+.app-header-avatar {
   border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
-.teacher-header-user-info {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
-
-.teacher-header-username {
-  color: white;
+.app-header-username {
   font-size: 14px;
   font-weight: 500;
 }
 
-.teacher-header-role {
+.app-header-role {
   color: rgba(255, 255, 255, 0.7);
   font-size: 10px;
   text-transform: uppercase;
@@ -140,27 +131,21 @@
 }
 
 @media (max-width: 768px) {
-  .teacher-header {
+  .app-header {
     padding: 0 12px;
   }
 
-  .teacher-header-title {
+  .app-header-title {
     font-size: 14px;
   }
 
-  .teacher-header-subtitle {
+  .app-header-subtitle,
+  .app-header-brand,
+  .app-header-user-info {
     display: none;
   }
 
-  .teacher-header-brand {
-    display: none;
-  }
-
-  .teacher-header-user-info {
-    display: none;
-  }
-
-  .teacher-header-user {
+  .app-header-user {
     padding: 4px;
     background: transparent;
   }

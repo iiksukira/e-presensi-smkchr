@@ -97,7 +97,10 @@ const PermissionAdmin: React.FC = () => {
     extension: string;
   }> | null>(null);
 
-  const fileBaseUrl = (import.meta.env.VITE_API_URL || "").replace(/\/api\/?$/, "");
+  const fileBaseUrl = (import.meta.env.VITE_API_URL || "").replace(
+    /\/api\/?$/,
+    "",
+  );
 
   const isSmallScreen = !screens.md;
 
@@ -286,13 +289,11 @@ const PermissionAdmin: React.FC = () => {
     {
       title: "No",
       key: "no",
-      width: 60,
       render: (_: any, __: any, index: number) => index + 1,
     },
     {
       title: "Guru",
       key: "teacher",
-      width: 200,
       render: (_: any, record: TeacherPermit) => (
         <Space orientation="vertical" size={0}>
           <Text strong>{record.teacherName}</Text>
@@ -306,7 +307,6 @@ const PermissionAdmin: React.FC = () => {
     {
       title: "Jenis Izin",
       key: "type",
-      width: 140,
       render: (_: any, record: TeacherPermit) => (
         <Space>
           <Text>{record.typeLabel}</Text>
@@ -323,7 +323,6 @@ const PermissionAdmin: React.FC = () => {
     {
       title: "Periode",
       key: "period",
-      width: 180,
       render: (_: any, record: TeacherPermit) => (
         <Space orientation="vertical" size={0}>
           <Text>{dayjs(record.startDate).format("DD/MM/YYYY")}</Text>
@@ -337,7 +336,6 @@ const PermissionAdmin: React.FC = () => {
     {
       title: "Alasan",
       key: "reason",
-      width: 200,
       ellipsis: true,
       render: (_: any, record: TeacherPermit) => (
         <Tooltip title={record.reason}>
@@ -351,7 +349,6 @@ const PermissionAdmin: React.FC = () => {
     },
     {
       title: "Lampiran",
-      width: 120,
       render: (_: any, record: TeacherPermit) => {
         const hasAttach = hasAttachment(record);
 
@@ -375,7 +372,6 @@ const PermissionAdmin: React.FC = () => {
     {
       title: "Tanggal Pengajuan",
       key: "createdAt",
-      width: 150,
       render: (_, record) => dayjs(record.createdAt).format("DD/MM/YYYY HH:mm"),
       sorter: (a, b) => dayjs(a.createdAt).unix() - dayjs(b.createdAt).unix(),
       defaultSortOrder: "descend",
@@ -383,7 +379,6 @@ const PermissionAdmin: React.FC = () => {
     {
       title: "Status",
       key: "status",
-      width: 120,
       render: (_, record) => getStatusTag(record.status),
       filters: [
         { text: "Menunggu", value: "pending" },
@@ -395,7 +390,6 @@ const PermissionAdmin: React.FC = () => {
     {
       title: "Aksi",
       key: "action",
-      width: 200,
       render: (_, record) => (
         <Space>
           {record.status === "pending" && (

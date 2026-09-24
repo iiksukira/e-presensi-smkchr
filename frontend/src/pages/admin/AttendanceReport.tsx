@@ -1,4 +1,4 @@
-
+/** @format */
 
 import React, { useState, useEffect } from "react";
 import {
@@ -53,7 +53,7 @@ const AttendanceReport: React.FC = () => {
   const [exporting, setExporting] = useState(false);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
-  const [selectedClass, setSelectedClass] = useState<string | null>(null); 
+  const [selectedClass, setSelectedClass] = useState<string | null>(null);
   const [classOptions, setClassOptions] = useState<
     { label: string; value: string }[]
   >([]);
@@ -62,14 +62,13 @@ const AttendanceReport: React.FC = () => {
 
   const fetchClassOptions = async () => {
     try {
-      const res = await api.get("/admin/classes"); 
+      const res = await api.get("/admin/classes");
       const classes = res.data.map((cls: any) => ({
         label: cls.name || cls.class_name,
         value: cls.id?.toString() || cls.name,
       }));
       setClassOptions(classes);
-    } catch (err) {
-    }
+    } catch (err) {}
   };
 
   const buildReportParams = () => {
@@ -105,32 +104,29 @@ const AttendanceReport: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchClassOptions(); 
+    fetchClassOptions();
   }, []);
 
   useEffect(() => {
     fetchReport();
-  }, [selectedRole, selectedDate, selectedClass]); 
+  }, [selectedRole, selectedDate, selectedClass]);
 
   const columns = [
     {
       title: "Tanggal",
       dataIndex: "date",
       key: "date",
-      width: 120,
       render: (text: string) => dayjs(text).format("DD MMM YYYY"),
     },
     {
       title: "Nama Lengkap",
       dataIndex: "full_name",
       key: "full_name",
-      width: 200,
     },
     {
       title: "Role",
       dataIndex: "role",
       key: "role",
-      width: 100,
       render: (role: string) => (
         <Tag color={role === "guru" ? token.colorPrimary : token.colorSuccess}>
           {role.toUpperCase()}
@@ -141,14 +137,12 @@ const AttendanceReport: React.FC = () => {
       title: "Kelas",
       dataIndex: "class_name",
       key: "class_name",
-      width: 150,
       render: (val: string) => val || "-",
     },
     {
       title: "Jam Masuk",
       dataIndex: "time_in",
       key: "time_in",
-      width: 120,
       render: (time: string, record: ReportData) => {
         const tagColor =
           record.status?.toLowerCase() === "hadir" ? "cyan" : "red";
@@ -166,7 +160,6 @@ const AttendanceReport: React.FC = () => {
       title: "Jam Keluar",
       dataIndex: "time_out",
       key: "time_out",
-      width: 120,
       render: (val: string | null) => {
         if (!val || val === "null") {
           return <Tag color="default">Belum</Tag>;
@@ -177,7 +170,6 @@ const AttendanceReport: React.FC = () => {
     {
       title: "Lokasi",
       key: "location",
-      width: 80,
       render: (_: any, record: ReportData) => (
         <Tooltip title="Lihat di Google Maps">
           <Button
@@ -265,6 +257,10 @@ const AttendanceReport: React.FC = () => {
             onClick={handleExportExcel}
             disabled={filteredData.length === 0 || exporting}
             loading={exporting}
+            style={{
+              backgroundColor: "#0b9106",
+              color: "#fff",
+            }}
           >
             Export Excel
           </Button>
@@ -312,7 +308,7 @@ const AttendanceReport: React.FC = () => {
             style={{ width: "100%" }}
             options={classOptions}
             loading={classOptions.length === 0}
-            showSearch 
+            showSearch
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }

@@ -623,25 +623,21 @@ const ManageTeachers: React.FC = () => {
       {
         title: "NIP/NUPTK",
         key: "nip",
-        width: 150,
         render: (_: any, record: any) => record.data["NIP"],
       },
       {
         title: "Nama Lengkap",
         key: "full_name",
-        width: 220,
         render: (_: any, record: any) => record.data["Nama Lengkap"],
       },
       {
         title: "Username",
         key: "username",
-        width: 180,
         render: (_: any, record: any) => record.data["Username"],
       },
       {
         title: "Status",
         key: "status",
-        width: 120,
         render: (_: any, record: any) =>
           record.isValid ? (
             <Tag color="success">Valid</Tag>
@@ -700,13 +696,11 @@ const ManageTeachers: React.FC = () => {
                 title: "NIP/NUPTK",
                 dataIndex: ["data", "NIP"],
                 key: "nip",
-                width: 150,
               },
               {
                 title: "Nama Lengkap",
                 dataIndex: ["data", "Nama Lengkap"],
                 key: "full_name",
-                width: 220,
               },
               {
                 title: "Kesalahan",
@@ -725,19 +719,16 @@ const ManageTeachers: React.FC = () => {
       title: "NUPTK/NIP",
       dataIndex: "nip",
       key: "nip",
-      width: 120,
     },
     {
       title: "Nama Lengkap",
       dataIndex: "full_name",
       key: "full_name",
-      width: 200,
     },
     {
       title: "Status Wajah",
       dataIndex: "face_data",
       key: "face_data",
-      width: 120,
       render: (face: boolean) =>
         face ? (
           <Tag color="success">Terdaftar</Tag>
@@ -749,7 +740,6 @@ const ManageTeachers: React.FC = () => {
       title: "Username",
       dataIndex: "username",
       key: "username",
-      width: 150,
       render: (username: string) => (
         <Space>
           <span style={{ fontFamily: "monospace", fontWeight: "bold" }}>
@@ -762,7 +752,6 @@ const ManageTeachers: React.FC = () => {
       title: "Password",
       dataIndex: "password",
       key: "password",
-      width: 150,
       render: (_: any, record: Teacher) => {
         const password =
           plaintextPasswords[
@@ -789,7 +778,6 @@ const ManageTeachers: React.FC = () => {
     {
       title: "Aksi",
       key: "action",
-      width: 100,
       render: (_: any, record: Teacher) => (
         <Space size="small">
           <Button
@@ -834,10 +822,11 @@ const ManageTeachers: React.FC = () => {
               fontWeight: 700,
             }}
           >
-            Manajemen Guru
+            Manajemen Akun Guru
           </Title>
           <Text type="secondary" style={{ fontSize: 12 }}>
-            Kelola data guru, termasuk penambahan, pengeditan, dan penghapusan
+            Kelola data akun guru, termasuk penambahan, pengeditan, dan
+            penghapusan
           </Text>
         </div>
         <Space wrap>

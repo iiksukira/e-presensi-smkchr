@@ -33,6 +33,8 @@ interface LocationPickerProps {
 const markerIcon = new Icon({
   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+  integrity: "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=",
+
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
@@ -47,6 +49,7 @@ const MapClickHandler: React.FC<{
       onLocationChange(e.latlng.lat, e.latlng.lng);
     },
   });
+
   return null;
 };
 
@@ -67,6 +70,7 @@ const LocationPicker: React.FC<LocationPickerProps> = ({
 }) => {
   const [tempLat, setTempLat] = useState(latitude.toString());
   const [tempLng, setTempLng] = useState(longitude.toString());
+
   const [markerPosition, setMarkerPosition] = useState<LatLng>(
     new LatLng(latitude, longitude),
   );
@@ -75,6 +79,7 @@ const LocationPicker: React.FC<LocationPickerProps> = ({
     setMarkerPosition(new LatLng(lat, lng));
     setTempLat(lat.toString());
     setTempLng(lng.toString());
+
     onLocationChange(lat, lng);
   };
 
@@ -115,8 +120,9 @@ const LocationPicker: React.FC<LocationPickerProps> = ({
       >
         <Space orientation="vertical" size={0}>
           <Text strong>Cara menggunakan:</Text>
+
           <Text type="secondary" style={{ fontSize: 12 }}>
-            Klik pada peta untuk mengatur lokasi absensi, atau masukkan
+            Klik pada peta untuk mengatur lokasi Presensi, atau masukkan
             koordinat secara manual di bawah.
           </Text>
         </Space>
@@ -134,25 +140,35 @@ const LocationPicker: React.FC<LocationPickerProps> = ({
         <MapContainer
           center={[latitude, longitude]}
           zoom={18}
-          style={{ height: "100%", width: "100%" }}
+          style={{
+            height: "100%",
+            width: "100%",
+          }}
           scrollWheelZoom={true}
         >
+          {/* OpenStreetMap - Detail jalan, daerah, bangunan & POI */}
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            maxZoom={19}
           />
+
           <Marker position={markerPosition} icon={markerIcon}>
             <Popup>
               <div>
-                <Text strong>Lokasi Absensi</Text>
+                <Text strong>Lokasi Presensi</Text>
+
                 <br />
-                <Text
-                  code
-                >{`${latitude.toFixed(6)}, ${longitude.toFixed(6)}`}</Text>
+
+                <Text code>
+                  {`${latitude.toFixed(6)}, ${longitude.toFixed(6)}`}
+                </Text>
               </div>
             </Popup>
           </Marker>
+
           <MapClickHandler onLocationChange={handleLocationChange} />
+
           <MapPanner center={markerPosition} />
         </MapContainer>
       </div>
@@ -164,6 +180,7 @@ const LocationPicker: React.FC<LocationPickerProps> = ({
             <Text type="secondary" style={{ fontSize: 12 }}>
               Latitude
             </Text>
+
             <Input
               type="number"
               step="0.00000001"
@@ -173,10 +190,12 @@ const LocationPicker: React.FC<LocationPickerProps> = ({
               style={{ marginTop: 4 }}
             />
           </Col>
+
           <Col xs={24} sm={12}>
             <Text type="secondary" style={{ fontSize: 12 }}>
               Longitude
             </Text>
+
             <Input
               type="number"
               step="0.00000001"
@@ -187,10 +206,14 @@ const LocationPicker: React.FC<LocationPickerProps> = ({
             />
           </Col>
         </Row>
+
         <Button
           type="primary"
           onClick={handleSetFromInput}
-          style={{ marginTop: 12, width: "100%" }}
+          style={{
+            marginTop: 12,
+            width: "100%",
+          }}
         >
           Terapkan Koordinat
         </Button>

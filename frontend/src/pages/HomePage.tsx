@@ -50,16 +50,6 @@ const HomePage: React.FC = () => {
     setSelectedRole(value);
   };
 
-  const getRoleColor = (role: string) => {
-    const colors: { [key: string]: string } = {
-      admin: "#2368a2",
-      guru: "#8c9600",
-      siswa: "#7dba00",
-      "orang tua": "#910000",
-    };
-    return colors[role] || "#2368a2";
-  };
-
   const getRoleIcon = (role: string) => {
     const icons: { [key: string]: React.ReactNode } = {
       admin: <UserOutlined />,
@@ -85,7 +75,7 @@ const HomePage: React.FC = () => {
   };
 
   const buttonStyle = (color: string): React.CSSProperties => ({
-    backgroundColor: color,
+    backgroundColor: "#2368a2",
     borderColor: color,
     borderRadius: 12,
     height: 40,
@@ -254,13 +244,13 @@ const HomePage: React.FC = () => {
                 width: 80,
                 height: 80,
                 borderRadius: "50%",
-                background: `${getRoleColor(selectedRole)}15`,
+                background: "#2368a2",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 margin: "0 auto 15px auto",
                 fontSize: "2rem",
-                color: getRoleColor(selectedRole),
+                color: "#ffffff",
                 transition: "all 0.3s ease",
               }}
             >
@@ -275,9 +265,9 @@ const HomePage: React.FC = () => {
             <Title
               level={3}
               style={{
-                color: getRoleColor(selectedRole),
                 marginBottom: 8,
                 fontWeight: 600,
+                color: "#2368a2",
               }}
             >
               Selamat Datang
@@ -308,7 +298,6 @@ const HomePage: React.FC = () => {
                   onChange={handleRoleChange}
                   style={selectStyle()}
                   size="small"
-                  suffixIcon={<UserOutlined />}
                   popupMatchSelectWidth={false}
                 >
                   <Option value="admin">
@@ -319,19 +308,19 @@ const HomePage: React.FC = () => {
                   </Option>
                   <Option value="guru">
                     <Space>
-                      <TeamOutlined style={{ color: "#8c9600" }} />
+                      <UserOutlined style={{ color: "#2368a2" }} />
                       <span>Guru</span>
                     </Space>
                   </Option>
                   <Option value="siswa">
                     <Space>
-                      <BookOutlined style={{ color: "#7dba00" }} />
+                      <UserOutlined style={{ color: "#2368a2" }} />
                       <span>Siswa</span>
                     </Space>
                   </Option>
                   <Option value="orang tua">
                     <Space>
-                      <HeartOutlined style={{ color: "#910000" }} />
+                      <UserOutlined style={{ color: "#2368a2" }} />
                       <span>Orang Tua</span>
                     </Space>
                   </Option>
@@ -341,7 +330,7 @@ const HomePage: React.FC = () => {
               <Button
                 type="primary"
                 size="medium"
-                style={buttonStyle(getRoleColor(selectedRole))}
+                style={buttonStyle(selectedRole)}
                 onClick={handleLogin}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.opacity = "0.9";
@@ -405,7 +394,7 @@ const HomePage: React.FC = () => {
                       fontSize: "1.5rem",
                     }}
                   >
-                    <ClockCircleOutlined />
+                    <ClockCircleOutlined style={{ color: "#2368a2" }} />
                   </div>
                   <Title level={5} style={{ color: "#2368a2" }}>
                     Real-time
@@ -427,13 +416,13 @@ const HomePage: React.FC = () => {
                       alignItems: "center",
                       justifyContent: "center",
                       margin: "0 auto 16px auto",
-                      color: "#7dba00",
+                      color: "#2368a2",
                       fontSize: "1.5rem",
                     }}
                   >
                     <SafetyOutlined />
                   </div>
-                  <Title level={5} style={{ color: "#7dba00" }}>
+                  <Title level={5} style={{ color: "#2368a2" }}>
                     Aman & Terpercaya
                   </Title>
                   <Text type="secondary">
@@ -457,7 +446,7 @@ const HomePage: React.FC = () => {
                       fontSize: "1.5rem",
                     }}
                   >
-                    <TeamOutlined />
+                    <UserOutlined style={{ color: "#2368a2" }} />
                   </div>
                   <Title level={5} style={{ color: "#2368a2" }}>
                     Multi-role Access

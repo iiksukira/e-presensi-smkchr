@@ -2,4 +2,5 @@ dist/
 .env
 .env.*
 node_modules/
+backend/upload/
 *.log

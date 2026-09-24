@@ -1,4 +1,4 @@
-
+/** @format */
 
 import React, { useState, useEffect, useMemo } from "react";
 import {
@@ -113,13 +113,11 @@ const PermissionStudent: React.FC = () => {
   const [isAttachmentModalVisible, setIsAttachmentModalVisible] =
     useState(false);
 
-  
   const [filters, setFilters] = useState<FilterParams>({});
   const [searchText, setSearchText] = useState("");
 
   const isSmallScreen = !screens.md;
 
-  
   const getAttachmentRequirement = (type: string) => {
     switch (type) {
       case "sick":
@@ -165,21 +163,17 @@ const PermissionStudent: React.FC = () => {
   const attachmentReq = getAttachmentRequirement(selectedPermitType);
   const editAttachmentReq = getAttachmentRequirement(editPermitType);
 
-  
   const filteredPermits = useMemo(() => {
     let result = [...permits];
 
-    
     if (activeTab !== "all") {
       result = result.filter((permit) => permit.status === activeTab);
     }
 
-    
     if (filters.type) {
       result = result.filter((permit) => permit.type === filters.type);
     }
 
-    
     if (filters.dateRange) {
       const [start, end] = filters.dateRange;
       result = result.filter((permit) => {
@@ -191,7 +185,6 @@ const PermissionStudent: React.FC = () => {
       });
     }
 
-    
     if (searchText) {
       const search = searchText.toLowerCase();
       result = result.filter((permit) =>
@@ -202,14 +195,12 @@ const PermissionStudent: React.FC = () => {
     return result;
   }, [permits, activeTab, filters, searchText]);
 
-  
   const handleResetFilters = () => {
     setFilters({});
     setSearchText("");
     setActiveTab("all");
   };
 
-  
   const fetchStudentData = async () => {
     try {
       const response = await api.get("/student/profile");
@@ -219,12 +210,11 @@ const PermissionStudent: React.FC = () => {
     }
   };
 
-  
   const fetchPermits = async () => {
     setLoading(true);
     try {
       const response = await api.get("/student/permits");
-      
+
       const processedPermits = response.data.map((permit: any) => ({
         ...permit,
         attachmentUrls: permit.attachment ? permit.attachment.split(",") : [],
@@ -244,21 +234,18 @@ const PermissionStudent: React.FC = () => {
     fetchPermits();
   }, []);
 
-  
   const handlePermitTypeChange = (value: string) => {
     setSelectedPermitType(value);
     setFileList([]);
     form.setFieldValue("type", value);
   };
 
-  
   const handleEditPermitTypeChange = (value: string) => {
     setEditPermitType(value);
     setEditFileList([]);
     editForm.setFieldValue("type", value);
   };
 
-  
   const handleUpload = async (fileList: UploadFile[]) => {
     if (fileList.length === 0) return [];
 
@@ -284,7 +271,6 @@ const PermissionStudent: React.FC = () => {
     }
   };
 
-  
   const handleSubmit = async (values: any) => {
     const requirement = getAttachmentRequirement(values.type);
 
@@ -346,7 +332,6 @@ const PermissionStudent: React.FC = () => {
     }
   };
 
-  
   const handleEdit = async (record: StudentPermit) => {
     if (record.status !== "pending") {
       message.warning(
@@ -379,7 +364,6 @@ const PermissionStudent: React.FC = () => {
     setIsEditModalVisible(true);
   };
 
-  
   const handleUpdate = async (values: any) => {
     if (!selectedPermit) return;
 
@@ -456,7 +440,6 @@ const PermissionStudent: React.FC = () => {
     }
   };
 
-  
   const handleCancelPermit = async (id: number) => {
     try {
       await api.delete(`/student/permits/${id}`);
@@ -469,7 +452,6 @@ const PermissionStudent: React.FC = () => {
     }
   };
 
-  
   const handlePreviewAttachment = (permit: StudentPermit) => {
     const attachmentUrl = permit.attachment;
 
@@ -504,7 +486,6 @@ const PermissionStudent: React.FC = () => {
     setIsAttachmentModalVisible(true);
   };
 
-  
   const handleDownloadAttachment = async (permit: StudentPermit) => {
     const attachmentUrl = permit.attachment;
 
@@ -525,7 +506,6 @@ const PermissionStudent: React.FC = () => {
     });
   };
 
-  
   const uploadProps: UploadProps = {
     onRemove: (file) => {
       const index = fileList.indexOf(file);
@@ -623,7 +603,6 @@ const PermissionStudent: React.FC = () => {
     maxCount: editAttachmentReq.maxFiles,
   };
 
-  
   const getPermitIcon = (type: string) => {
     switch (type) {
       case "sick":
@@ -651,7 +630,6 @@ const PermissionStudent: React.FC = () => {
     }
   };
 
-  
   const getFileIcon = (url?: string | null) => {
     if (!url || url === "null" || url === "") return <FileOutlined />;
     const firstUrl = url.split(",")[0].trim();
@@ -664,7 +642,6 @@ const PermissionStudent: React.FC = () => {
     return <FileOutlined />;
   };
 
-  
   const hasAttachment = (record: StudentPermit) => {
     return !!(
       record.attachment &&
@@ -679,7 +656,6 @@ const PermissionStudent: React.FC = () => {
     return record.attachment!.split(",").length;
   };
 
-  
   const columns = [
     {
       title: "No",
@@ -807,7 +783,6 @@ const PermissionStudent: React.FC = () => {
     },
   ];
 
-  
   const stats = useMemo(
     () => ({
       total: permits.length,
@@ -833,7 +808,9 @@ const PermissionStudent: React.FC = () => {
             Pengajuan Perizinan Siswa
           </Title>
           <Text type="secondary" style={{ fontSize: 12 }}>
-            Kelola pengajuan izin, cuti, keperluan, dan BDR
+            Kelola pengajuan izin, cuti, keperluan, dan Belajar Dari Rumah (BDR)
+            siswa. Ajukan izin baru, lihat status, dan kelola lampiran dengan
+            mudah.
           </Text>
         </div>
         <Space>
@@ -916,7 +893,7 @@ const PermissionStudent: React.FC = () => {
             <Option value="remote">
               <Space size={4}>
                 <ClockCircleOutlined style={{ color: token.colorSuccess }} />
-                <span>BDR</span>
+                <span>Belajar Dari Rumah (BDR)</span>
               </Space>
             </Option>
           </Select>
@@ -1031,7 +1008,7 @@ const PermissionStudent: React.FC = () => {
                 <Space>Keperluan (wajib surat keterangan)</Space>
               </Option>
               <Option value="remote">
-                <Space>BDR / Belajar Dari Rumah (wajib 2 foto)</Space>
+                <Space>Belajar Dari Rumah (BDR) (wajib 2 foto)</Space>
               </Option>
             </Select>
           </Form.Item>
@@ -1073,14 +1050,6 @@ const PermissionStudent: React.FC = () => {
               label="Lampiran"
               required={attachmentReq.required}
               help={attachmentReq.message}
-              extra={
-                (selectedPermitType === "business" ||
-                  selectedPermitType === "remote") && (
-                  <Text type="warning" style={{ fontSize: 12 }}>
-                    ⚠️ Minimal upload 2 file untuk dokumen pendukung
-                  </Text>
-                )
-              }
             >
               <Upload {...uploadProps}>
                 <Button icon={<CameraOutlined />}>Upload File</Button>
@@ -1141,7 +1110,7 @@ const PermissionStudent: React.FC = () => {
                 <Space>Keperluan (wajib surat keterangan)</Space>
               </Option>
               <Option value="remote">
-                <Space>BDR / Belajar Dari Rumah (wajib 2 foto)</Space>
+                <Space>Belajar Dari Rumah (BDR) (wajib 2 foto)</Space>
               </Option>
             </Select>
           </Form.Item>
@@ -1183,14 +1152,6 @@ const PermissionStudent: React.FC = () => {
               label="Lampiran"
               required={editAttachmentReq.required}
               help={editAttachmentReq.message}
-              extra={
-                (editPermitType === "business" ||
-                  editPermitType === "remote") && (
-                  <Text type="warning" style={{ fontSize: 12 }}>
-                    ⚠️ Minimal upload 2 file untuk dokumen pendukung
-                  </Text>
-                )
-              }
             >
               <Upload {...editUploadProps}>
                 <Button icon={<CameraOutlined />}>Upload File</Button>

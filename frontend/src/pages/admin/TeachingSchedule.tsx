@@ -290,10 +290,10 @@ const AdminTeachingSchedule: React.FC = () => {
         Hari: "Senin",
         "Jam Mulai": "07:00",
         "Jam Selesai": "08:00",
-        "Mata Pelajaran": "Matematika",
-        Kelas: "XII RPL 1",
+        "Mata Pelajaran": "Dasar-dasar Teknik Mesin",
+        Kelas: "XII TSM",
         Guru: "Budi Santoso",
-        Ruangan: "Ruang 101",
+        Ruangan: "Ruang 1",
       },
     ];
 
@@ -672,10 +672,9 @@ const AdminTeachingSchedule: React.FC = () => {
           pagination={false}
           scroll={{ y: 240 }}
           columns={[
-            { title: "Baris", dataIndex: "row", width: 60 },
+            { title: "Baris", dataIndex: "row" },
             {
               title: "Status",
-              width: 90,
               render: (_: any, record: any) =>
                 record.isValid ? (
                   <Tag color="success">Valid</Tag>
@@ -730,43 +729,36 @@ const AdminTeachingSchedule: React.FC = () => {
       title: "Hari",
       dataIndex: "day",
       key: "day",
-      width: 100,
     },
     {
       title: "Jam",
       dataIndex: "time_range",
       key: "time_range",
-      width: 150,
     },
     {
       title: "Mata Pelajaran",
       dataIndex: "subject_name",
       key: "subject_name",
-      width: 150,
     },
     {
       title: "Kelas",
       dataIndex: "class_name",
       key: "class_name",
-      width: 150,
     },
     {
       title: "Guru",
       dataIndex: "teacher_name",
       key: "teacher_name",
-      width: 150,
     },
     {
       title: "Ruangan",
       dataIndex: "room",
       key: "room",
-      width: 120,
     },
     {
       title: "Lampiran",
       dataIndex: "attachment",
       key: "attachment",
-      width: 120,
       render: (attachment: string | undefined, record: Schedule) => {
         if (attachment) {
           return (
@@ -811,7 +803,6 @@ const AdminTeachingSchedule: React.FC = () => {
     {
       title: "Aksi",
       key: "action",
-      width: 100,
       render: (_: any, record: Schedule) => (
         <Space size="small">
           <Button

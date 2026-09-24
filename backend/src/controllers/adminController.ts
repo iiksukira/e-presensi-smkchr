@@ -1014,7 +1014,7 @@ export const getAttendanceReport = async (req: Request, res: Response) => {
     res.json(rows);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Gagal mengambil laporan absensi" });
+    res.status(500).json({ message: "Gagal mengambil laporan Presensi" });
   }
 };
 

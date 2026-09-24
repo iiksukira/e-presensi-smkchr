@@ -349,8 +349,8 @@ const ClassAttendance: React.FC = () => {
       {}
       {!selectedClass && (
         <Alert
-          message="Belum ada kelas dipilih"
-          type="info"
+          title="Belum ada kelas dipilih!"
+          type="error"
           style={{ marginBottom: 24, borderRadius: token.borderRadiusLG }}
         />
       )}

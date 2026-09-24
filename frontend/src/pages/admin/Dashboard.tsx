@@ -166,7 +166,7 @@ const AdminDashboard: React.FC = () => {
       >
         <div>
           <Title level={4} style={{ margin: 0, fontWeight: 700 }}>
-            Dasbor Admin
+            Dashboard Admin
           </Title>
           <Text type="secondary" style={{ fontSize: 12 }}>
             Pantau statistik dan aktivitas presensi secara real-time
@@ -283,15 +283,15 @@ const AdminDashboard: React.FC = () => {
       <Row gutter={[16, 16]} style={{ marginBottom: 40, textAlign: "left" }}>
         {[
           {
-            title: "Manajemen Siswa",
+            title: "Manajemen Akun Siswa",
             desc: "Tambah, edit, atau hapus siswa",
             icon: TeamOutlined,
             path: "/admin/manage-students",
             color: primaryColor,
           },
           {
-            title: "Manajemen Guru",
-            desc: "Kelola data staf pengajar",
+            title: "Manajemen Akun Guru",
+            desc: "Kelola data akun staff pengajar",
             icon: UserOutlined,
             path: "/admin/manage-teachers",
             color: successColor,

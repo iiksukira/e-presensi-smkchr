@@ -1,4 +1,4 @@
-
+/** @format */
 
 import React, { useState, useEffect } from "react";
 import {
@@ -120,13 +120,11 @@ const FaceManagement: React.FC = () => {
       title: "Nama Lengkap",
       dataIndex: "full_name",
       key: "full_name",
-      width: 200,
     },
     {
       title: "Role",
       dataIndex: "role",
       key: "role",
-      width: 120,
       render: (role: string) => (
         <Tag color={role === "guru" ? token.colorPrimary : token.colorSuccess}>
           {role.toUpperCase()}
@@ -137,7 +135,6 @@ const FaceManagement: React.FC = () => {
       title: "Status Biometrik",
       dataIndex: "has_face",
       key: "has_face",
-      width: 150,
       render: (has_face: boolean) =>
         has_face ? (
           <Tag color="success">Terdaftar</Tag>
@@ -149,7 +146,6 @@ const FaceManagement: React.FC = () => {
       title: "Gambar Wajah",
       dataIndex: "face_image",
       key: "face_image",
-      width: 120,
       render: (face_image: string | null, record: FaceData) =>
         face_image ? (
           <img

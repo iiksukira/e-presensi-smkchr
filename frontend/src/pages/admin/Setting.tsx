@@ -290,14 +290,14 @@ const Setting: React.FC = () => {
       label: (
         <Space>
           <MonitorOutlined />
-          <span>Sistem Absensi</span>
+          <span>Sistem Presensi</span>
         </Space>
       ),
       children: (
         <div>
           <Alert
             message="Konfigurasi Sistem"
-            description="Atur parameter sistem absensi sesuai kebijakan sekolah"
+            description="Atur parameter sistem presensi sesuai kebijakan sekolah"
             type="info"
           />
           <Card style={{ marginTop: "10px" }}>
@@ -310,7 +310,7 @@ const Setting: React.FC = () => {
                 name="attendanceStartTime"
                 label={
                   <Space>
-                    <span>Waktu Mulai Absensi</span>
+                    <span>Waktu Mulai Presensi</span>
                   </Space>
                 }
                 rules={[{ required: true, message: "Masukkan waktu mulai" }]}
@@ -330,7 +330,7 @@ const Setting: React.FC = () => {
                 name="attendanceEndTime"
                 label={
                   <Space>
-                    <span>Waktu Akhir Absensi</span>
+                    <span>Waktu Akhir Presensi</span>
                   </Space>
                 }
                 rules={[{ required: true, message: "Masukkan waktu akhir" }]}
@@ -349,7 +349,7 @@ const Setting: React.FC = () => {
               <Form.Item
                 label={
                   <Space>
-                    <span>Koordinat Lokasi Absensi</span>
+                    <span>Koordinat Lokasi Presensi</span>
                   </Space>
                 }
               >
@@ -373,7 +373,7 @@ const Setting: React.FC = () => {
                 rules={[
                   { required: true, message: "Masukkan toleransi jarak" },
                 ]}
-                extra="Jarak maksimal dari lokasi absensi"
+                extra="Jarak maksimal dari lokasi presensi (dalam meter) untuk dianggap hadir"
               >
                 <InputNumber
                   min={0}
@@ -393,7 +393,7 @@ const Setting: React.FC = () => {
                   </Space>
                 }
                 rules={[{ required: true, message: "Masukkan toleransi" }]}
-                extra="Waktu toleransi setelah batas absensi"
+                extra="Waktu toleransi setelah batas presensi"
               >
                 <InputNumber
                   min={0}
@@ -458,7 +458,7 @@ const Setting: React.FC = () => {
         <div>
           <Alert
             message="Pengenalan Wajah"
-            description="Konfigurasi sistem pengenalan wajah untuk absensi"
+            description="Konfigurasi sistem pengenalan wajah untuk presensi"
             type="success"
           />
           <Card style={{ marginTop: "10px" }}>
@@ -530,7 +530,7 @@ const Setting: React.FC = () => {
         <div>
           <Alert
             message="Pengaturan Notifikasi"
-            description="Atur preferensi notifikasi untuk monitoring absensi"
+            description="Atur preferensi notifikasi untuk monitoring presensi"
             type="warning"
           />
           <Card style={{ marginTop: "10px" }}>
@@ -551,7 +551,7 @@ const Setting: React.FC = () => {
                       <Text strong>Notifikasi Email</Text>
                       <br />
                       <Text type="secondary" style={{ fontSize: 12 }}>
-                        Kirim notifikasi via email untuk absensi terlambat
+                        Kirim notifikasi via email untuk presensi terlambat
                       </Text>
                     </div>
                   </Space>
@@ -622,7 +622,7 @@ const Setting: React.FC = () => {
                       <Text strong>Notifikasi Laporan Harian</Text>
                       <br />
                       <Text type="secondary" style={{ fontSize: 12 }}>
-                        Kirim laporan absensi harian ke email admin
+                        Kirim laporan presensi harian ke email admin
                       </Text>
                     </div>
                   </Space>

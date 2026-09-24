@@ -1,4 +1,4 @@
-
+/** @format */
 
 import React from "react";
 import { Card, Table, Tag, Row, Col, Statistic, Typography } from "antd";
@@ -12,7 +12,7 @@ import { usePageTitle } from "../../utils/usePageTitle";
 const { Title } = Typography;
 
 const Attendance: React.FC = () => {
-  usePageTitle("Riwayat Absensi");
+  usePageTitle("Riwayat Presensi");
 
   const data = [
     { date: "2026-07-03", subject: "Pemrograman Web", status: "Hadir" },
@@ -66,7 +66,7 @@ const Attendance: React.FC = () => {
     <div style={{ display: "grid", gap: 16 }}>
       <Card>
         <Title level={4} style={{ marginBottom: 8 }}>
-          Riwayat Absensi Anak
+          Riwayat Presensi Anak
         </Title>
       </Card>
 

@@ -5,16 +5,18 @@ import { Typography } from "antd";
 
 const { Title, Text } = Typography;
 
-const NotificationTeacher: React.FC = () => {
+const StudentData: React.FC = () => {
   return (
     <div>
       <Title level={4} style={{ margin: 0, fontWeight: 700 }}>
-        Notifikasi
+        Data Peserta Didik
       </Title>
       <Text type="secondary" style={{ fontSize: 12 }}>
-        Halaman ini menampilkan notifikasi yang terkait dengan aktivitas guru.
+        Halaman ini menampilkan data peserta didik yang terdaftar di sistem,
+        Anda dapat melihat informasi lengkap mengenai setiap peserta didik.
       </Text>
     </div>
   );
 };
-export default NotificationTeacher;
+
+export default StudentData;

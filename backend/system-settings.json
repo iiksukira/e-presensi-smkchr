@@ -1,11 +1,11 @@
 {
   "attendanceStartTime": "09:00",
   "attendanceEndTime": "13:00",
-  "toleranceMeters": 1500,
+  "toleranceMeters": 5,
   "enableNotifications": false,
   "autoLogoutTime": 60,
-  "attendanceLocationLat": -6.274424,
-  "attendanceLocationLng": 107.650483,
+  "attendanceLocationLat": -6.273811,
+  "attendanceLocationLng": 107.652713,
   "toleranceMinutes": 15,
   "notification_sound_duration": 30
 }

@@ -345,13 +345,11 @@ const StudentPermit: React.FC = () => {
     {
       title: "No",
       key: "no",
-      width: 60,
       render: (_: any, __: any, index: number) => index + 1,
     },
     {
       title: "Siswa",
       key: "student",
-      width: 200,
       render: (_: any, record: StudentPermit) => (
         <Space orientation="vertical" size={0}>
           <Text strong>{record.studentName}</Text>
@@ -365,7 +363,6 @@ const StudentPermit: React.FC = () => {
     {
       title: "Jenis Izin",
       key: "type",
-      width: 120,
       render: (_: any, record: StudentPermit) => (
         <Space>
           {getPermitIcon(record.type)}
@@ -383,7 +380,6 @@ const StudentPermit: React.FC = () => {
     {
       title: "Periode",
       key: "period",
-      width: 180,
       render: (_: any, record: StudentPermit) => (
         <Space orientation="vertical" size={0}>
           <Text>{dayjs(record.startDate).format("DD/MM/YYYY")}</Text>
@@ -397,7 +393,6 @@ const StudentPermit: React.FC = () => {
     {
       title: "Alasan",
       key: "reason",
-      width: 200,
       ellipsis: true,
       render: (_: any, record: StudentPermit) => (
         <Tooltip title={record.reason}>
@@ -411,7 +406,6 @@ const StudentPermit: React.FC = () => {
     },
     {
       title: "Lampiran",
-      width: 120,
       render: (_: any, record: StudentPermit) => {
         const hasAttach = hasAttachment(record);
 
@@ -438,7 +432,6 @@ const StudentPermit: React.FC = () => {
     {
       title: "Tanggal Pengajuan",
       key: "createdAt",
-      width: 150,
       render: (_, record) => dayjs(record.createdAt).format("DD/MM/YYYY HH:mm"),
       sorter: (a, b) => dayjs(a.createdAt).unix() - dayjs(b.createdAt).unix(),
       defaultSortOrder: "descend",
@@ -446,7 +439,6 @@ const StudentPermit: React.FC = () => {
     {
       title: "Status",
       key: "status",
-      width: 120,
       render: (_, record) => getStatusTag(record.status),
       filters: [
         { text: "Menunggu", value: "pending" },
@@ -458,7 +450,6 @@ const StudentPermit: React.FC = () => {
     {
       title: "Aksi",
       key: "action",
-      width: 200,
       fixed: isSmallScreen ? false : "right",
       render: (_, record) => (
         <Space>

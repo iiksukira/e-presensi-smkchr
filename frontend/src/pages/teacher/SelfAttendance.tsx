@@ -64,7 +64,7 @@ const SelfAttendance: React.FC = () => {
   }, []);
 
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<"in" | "out" | null>(null);
   const [modelsLoaded, setModelsLoaded] = useState(false);
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(
     null,
@@ -110,7 +110,7 @@ const SelfAttendance: React.FC = () => {
     navigator.geolocation.getCurrentPosition(
       (pos) =>
         setLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
-      () => message.error("Mohon aktifkan GPS untuk melakukan absensi"),
+      () => message.error("Mohon aktifkan GPS untuk melakukan presensi"),
     );
   }, []);
 
@@ -155,7 +155,7 @@ const SelfAttendance: React.FC = () => {
 
     if (meters > locationTolerance) {
       setLocationError(
-        `Lokasi terlalu jauh dari area absensi (${Math.round(
+        `Lokasi terlalu jauh dari area presensi (${Math.round(
           meters,
         )} m). Batas toleransi ${locationTolerance} m.`,
       );
@@ -233,11 +233,11 @@ const SelfAttendance: React.FC = () => {
 
     if (distanceMeters && distanceMeters > locationTolerance) {
       return message.error(
-        "Lokasi Anda berada diluar jangkauan toleransi absensi.",
+        "Lokasi Anda berada diluar jangkauan toleransi presensi.",
       );
     }
 
-    setLoading(true);
+    setLoading(type);
 
     try {
       const detections = await faceapi
@@ -250,7 +250,7 @@ const SelfAttendance: React.FC = () => {
 
       if (!detections) {
         message.error("Wajah tidak terdeteksi. Pastikan pencahayaan cukup.");
-        setLoading(false);
+        setLoading(null);
         return;
       }
 
@@ -264,7 +264,7 @@ const SelfAttendance: React.FC = () => {
       if (response.data.attendanceStatus) {
         setAttendanceStatus(response.data.attendanceStatus);
       } else {
-        await checkAttendanceStatus();
+        void checkAttendanceStatus();
       }
 
       const stream = videoRef.current?.srcObject as MediaStream;
@@ -274,7 +274,7 @@ const SelfAttendance: React.FC = () => {
 
       message.success(
         response.data.message ||
-          `Absensi ${type === "in" ? "Masuk" : "Pulang"} Berhasil!`,
+          `Presensi ${type === "in" ? "Masuk" : "Pulang"} Berhasil!`,
       );
     } catch (err: any) {
       if (err.response?.status === 401) {
@@ -290,7 +290,7 @@ const SelfAttendance: React.FC = () => {
         message.error(err.response?.data?.message || "Gagal verifikasi wajah");
       }
     } finally {
-      setLoading(false);
+      setLoading(null);
     }
   };
 
@@ -302,13 +302,13 @@ const SelfAttendance: React.FC = () => {
           style={{ width: "100%", marginBottom: 16, textAlign: "center" }}
         >
           <Tag color={attendanceStatus.checkedIn ? "green" : "orange"}>
-            Absen Masuk:{" "}
+            Presensi Masuk:{" "}
             {attendanceStatus.checkedIn
               ? `✓ ${attendanceStatus.checkInTime}`
               : "Belum"}
           </Tag>
           <Tag color={attendanceStatus.checkedOut ? "green" : "orange"}>
-            Absen Pulang:{" "}
+            Presensi Pulang:{" "}
             {attendanceStatus.checkedOut
               ? `✓ ${attendanceStatus.checkOutTime}`
               : "Belum"}
@@ -376,24 +376,24 @@ const SelfAttendance: React.FC = () => {
               type="primary"
               icon={<LoginOutlined />}
               onClick={() => handleAttendance("in")}
-              loading={loading}
+              loading={loading === "in"}
               disabled={
                 !location || !!locationError || attendanceStatus?.checkedIn
               }
               block
             >
-              Absen Masuk
+              Presensi Masuk
             </Button>
 
             <Button
               type="primary"
               icon={<LogoutOutlined />}
               onClick={() => handleAttendance("out")}
-              loading={loading}
+              loading={loading === "out"}
               disabled={!attendanceStatus?.checkedIn}
               block
             >
-              Absen Pulang
+              Presensi Pulang
             </Button>
           </Space>
 
@@ -405,7 +405,7 @@ const SelfAttendance: React.FC = () => {
               </Text>
               <br />
               <Text type="secondary">
-                Jarak ke lokasi absensi:{" "}
+                Jarak ke lokasi presensi:{" "}
                 {distanceMeters !== null
                   ? `${Math.round(distanceMeters)} m`
                   : "-"}
@@ -421,17 +421,17 @@ const SelfAttendance: React.FC = () => {
         <div style={{ textAlign: "center", marginTop: 32 }}>
           <CheckCircleOutlined style={{ fontSize: 64, color: "#52c41a" }} />
           <Title level={3}>Terima Kasih, Bapak/Ibu Guru</Title>
-          <Text>Absensi hari ini telah selesai</Text>
+          <Text>Presensi hari ini telah selesai</Text>
           <br />
           <Space orientation="vertical" style={{ marginTop: 16 }}>
             {attendanceStatus?.checkInTime && (
               <Tag color="blue">
-                Absen Masuk: {attendanceStatus.checkInTime}
+                Presensi Masuk: {attendanceStatus.checkInTime}
               </Tag>
             )}
             {attendanceStatus?.checkOutTime && (
               <Tag color="green">
-                Absen Pulang: {attendanceStatus.checkOutTime}
+                Presensi Pulang: {attendanceStatus.checkOutTime}
               </Tag>
             )}
           </Space>

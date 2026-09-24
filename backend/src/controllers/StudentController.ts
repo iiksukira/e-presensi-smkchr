@@ -194,7 +194,7 @@ export const submitStudentAttendance = async (req: any, res: Response) => {
 
   if (typeof lat !== "number" || typeof lng !== "number") {
     return res.status(400).json({
-      message: "Lokasi absensi belum tersedia atau tidak valid.",
+      message: "Lokasi Presensi belum tersedia atau tidak valid.",
     });
   }
 
@@ -209,7 +209,7 @@ export const submitStudentAttendance = async (req: any, res: Response) => {
 
     if (distanceMeters > settings.toleranceMeters) {
       return res.status(400).json({
-        message: `Lokasi terlalu jauh dari area absensi (${Math.round(
+        message: `Lokasi terlalu jauh dari area Presensi (${Math.round(
           distanceMeters,
         )} m). Batas toleransi ${settings.toleranceMeters} m.`,
       });
@@ -265,7 +265,7 @@ export const submitStudentAttendance = async (req: any, res: Response) => {
     if (type === "in") {
       if (existing.length > 0 && existing[0].time_in) {
         return res.status(400).json({
-          message: "Anda sudah melakukan absen masuk hari ini.",
+          message: "Anda sudah melakukan Presensi masuk hari ini.",
         });
       }
 
@@ -284,7 +284,7 @@ export const submitStudentAttendance = async (req: any, res: Response) => {
       }
 
       return res.json({
-        message: "Absen Masuk Berhasil!",
+        message: "Presensi Masuk Berhasil!",
         name: rows[0].full_name,
         time_in: timeNow,
         status: attendanceStatus,
@@ -297,7 +297,7 @@ export const submitStudentAttendance = async (req: any, res: Response) => {
     } else if (type === "out") {
       if (existing[0]?.time_out) {
         return res.status(400).json({
-          message: "Anda sudah melakukan absen pulang hari ini.",
+          message: "Anda sudah melakukan Presensi pulang hari ini.",
         });
       }
 
@@ -308,7 +308,7 @@ export const submitStudentAttendance = async (req: any, res: Response) => {
         );
 
         return res.json({
-          message: "Absen Pulang Berhasil!",
+          message: "Presensi Pulang Berhasil!",
           name: rows[0].full_name,
           time_out: timeNow,
           attendanceStatus: {
@@ -326,7 +326,7 @@ export const submitStudentAttendance = async (req: any, res: Response) => {
         );
 
         return res.json({
-          message: "Absen Pulang Berhasil!",
+          message: "Presensi Pulang Berhasil!",
           name: rows[0].full_name,
           time_out: timeNow,
           attendanceStatus: {
@@ -338,10 +338,10 @@ export const submitStudentAttendance = async (req: any, res: Response) => {
       }
     }
 
-    return res.status(400).json({ message: "Tipe absensi tidak valid" });
+    return res.status(400).json({ message: "Tipe Presensi tidak valid" });
   } catch (error) {
     console.error("Error in submitStudentAttendance:", error);
-    return res.status(500).json({ message: "Gagal memproses absensi" });
+    return res.status(500).json({ message: "Gagal memproses Presensi" });
   }
 };
 
@@ -446,7 +446,7 @@ export const getStudentAttendanceHistory = async (req: any, res: Response) => {
     res.json(formattedRows);
   } catch (error) {
     console.error("Error getting attendance history:", error);
-    res.status(500).json({ message: "Gagal mengambil riwayat absensi" });
+    res.status(500).json({ message: "Gagal mengambil riwayat Presensi" });
   }
 };
 

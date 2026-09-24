@@ -325,7 +325,7 @@ const RegisterFaceStudent: React.FC = () => {
             </Title>
             <Paragraph type="secondary">
               Anda sudah mendaftarkan data biometrik wajah. Sekarang Anda dapat
-              melakukan absensi mandiri menggunakan kamera.
+              melakukan Presensi mandiri menggunakan kamera.
             </Paragraph>
             <Button
               type="primary"
@@ -334,7 +334,7 @@ const RegisterFaceStudent: React.FC = () => {
               }
               style={{ marginTop: 16 }}
             >
-              Lanjut ke melakukan Absensi
+              Lanjut Presensi
             </Button>
           </div>
         </Card>

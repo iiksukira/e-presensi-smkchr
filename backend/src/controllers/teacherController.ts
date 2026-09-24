@@ -264,7 +264,7 @@ export const submitTeacherAttendance = async (req: any, res: Response) => {
   if (typeof lat !== "number" || typeof lng !== "number") {
     return res
       .status(400)
-      .json({ message: "Lokasi absensi belum tersedia atau tidak valid." });
+      .json({ message: "Lokasi Presensi belum tersedia atau tidak valid." });
   }
 
   try {
@@ -278,7 +278,7 @@ export const submitTeacherAttendance = async (req: any, res: Response) => {
 
     if (distanceMeters > settings.toleranceMeters) {
       return res.status(400).json({
-        message: `Lokasi terlalu jauh dari area absensi (${Math.round(
+        message: `Lokasi terlalu jauh dari area Presensi (${Math.round(
           distanceMeters,
         )} m). Batas toleransi ${settings.toleranceMeters} m.`,
       });
@@ -351,7 +351,7 @@ export const submitTeacherAttendance = async (req: any, res: Response) => {
       : null;
 
     res.json({
-      message: `Absensi ${type === "in" ? "masuk" : "pulang"} berhasil`,
+      message: `Presensi ${type === "in" ? "masuk" : "pulang"} berhasil`,
       name: rows[0].full_name,
       status: "success",
       type: type,
@@ -364,7 +364,7 @@ export const submitTeacherAttendance = async (req: any, res: Response) => {
     });
   } catch (error) {
     console.error("Error in submitTeacherAttendance:", error);
-    res.status(500).json({ message: "Gagal memproses absensi" });
+    res.status(500).json({ message: "Gagal memproses Presensi" });
   }
 };
 
@@ -419,7 +419,7 @@ export const getTeacherAttendanceStatus = async (req: any, res: Response) => {
     }
   } catch (error) {
     console.error("Error in getTeacherAttendanceStatus:", error);
-    res.status(500).json({ message: "Gagal mengambil status absensi" });
+    res.status(500).json({ message: "Gagal mengambil status Presensi" });
   }
 };
 
@@ -517,9 +517,9 @@ export const manualAttendance = async (req: any, res: Response) => {
       );
     }
 
-    res.json({ message: "Absensi berhasil diperbarui" });
+    res.json({ message: "Presensi berhasil diperbarui" });
   } catch (error) {
-    res.status(500).json({ message: "Gagal memperbarui absensi" });
+    res.status(500).json({ message: "Gagal memperbarui Presensi" });
   }
 };
 
@@ -1283,14 +1283,14 @@ export const bulkAttendance = async (req: any, res: Response) => {
     }
 
     res.json({
-      message: `Berhasil update absensi: ${insertedCount} data baru, ${updatedCount} data diupdate`,
+      message: `Berhasil update Presensi: ${insertedCount} data baru, ${updatedCount} data diupdate`,
       total: students.length,
       updated: updatedCount,
       inserted: insertedCount,
     });
   } catch (error) {
     console.error("Error in bulkAttendance:", error);
-    res.status(500).json({ message: "Gagal update absensi masal" });
+    res.status(500).json({ message: "Gagal update Presensi masal" });
   }
 };
 
@@ -1361,7 +1361,7 @@ export const exportAttendance = async (req: any, res: Response) => {
     ].join("\n");
 
     const metadata = [
-      `"Laporan Absensi Kelas ${classInfo[0].class_name} - ${classInfo[0].major}"`,
+      `"Laporan Presensi Kelas ${classInfo[0].class_name} - ${classInfo[0].major}"`,
       `"Tanggal: ${dayjs(attendanceDate).format("DD/MM/YYYY")}"`,
       `"Total Siswa: ${students.length}"`,
       `"Hadir: ${students.filter((s: any) => s.status === "hadir").length}"`,
@@ -1377,14 +1377,14 @@ export const exportAttendance = async (req: any, res: Response) => {
     res.setHeader("Content-Type", "text/csv; charset=utf-8");
     res.setHeader(
       "Content-Disposition",
-      `attachment; filename=absensi_kelas_${classId}_${attendanceDate}.csv`,
+      `attachment; filename=presensi_kelas_${classId}_${attendanceDate}.csv`,
     );
 
     const bom = "\uFEFF";
     res.send(bom + finalContent);
   } catch (error) {
     console.error("Error in exportAttendance:", error);
-    res.status(500).json({ message: "Gagal mengekspor data absensi" });
+    res.status(500).json({ message: "Gagal mengekspor data Presensi" });
   }
 };
 

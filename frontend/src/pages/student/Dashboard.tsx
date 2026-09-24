@@ -198,7 +198,7 @@ const StudentDashboard: React.FC = () => {
   ) => {
     if (checkedIn && checkedOut) return "Selesai";
     if (checkedIn) return "Masuk";
-    return "Belum Absen";
+    return "Belum Presensi";
   };
 
   const todaySchedule = (dashboardStats?.schedule || []).filter(
@@ -333,7 +333,7 @@ const StudentDashboard: React.FC = () => {
         {}
         <Col xs={24} md={12}>
           <Card
-            title={<Text>Status Absensi Hari Ini</Text>}
+            title={<Text>Status Presensi Hari Ini</Text>}
             extra={
               attendanceToday && (
                 <Tag
@@ -403,8 +403,8 @@ const StudentDashboard: React.FC = () => {
                 )}
 
                 <Alert
-                  title="Absensi hari ini sudah tercatat"
-                  description="Terima kasih telah melakukan absensi. Tetap semangat belajar!"
+                  title="Presensi hari ini sudah tercatat"
+                  description="Terima kasih telah melakukan presensi. Tetap semangat belajar!"
                   type="success"
                   showIcon
                 />
@@ -413,7 +413,7 @@ const StudentDashboard: React.FC = () => {
               <Space orientation="vertical" style={{ width: "100%" }}>
                 <Empty
                   image={Empty.PRESENTED_IMAGE_SIMPLE}
-                  description="Anda belum melakukan absensi hari ini
+                  description="Anda belum melakukan presensi hari ini
 "
                 />
                 <Button
@@ -422,7 +422,7 @@ const StudentDashboard: React.FC = () => {
                   block
                   onClick={() => navigate("/student/self-attendance")}
                 >
-                  Lakukan Absensi Sekarang
+                  Lakukan Presensi Sekarang
                 </Button>
               </Space>
             )}
